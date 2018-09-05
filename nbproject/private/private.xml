@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/EjercicioBanco/src/modelos/Cliente.java</file>
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/EjercicioBanco/src/repositorios/RepositorioTransferencias.java</file>
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/EjercicioBanco/src/vistas/VentanaInicio.java</file>
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/EjercicioBanco/src/modelos/Registro.java</file>
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/EjercicioBanco/src/repositorios/RepositorioCliente.java</file>
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/EjercicioBanco/src/modelos/Transferencia.java</file>
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/EjercicioBanco/src/repositorios/RepositorioRegistros.java</file>
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/EjercicioBanco/src/servicios/ServicioTransferencia.java</file>
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/EjercicioBanco/src/presentadores/PresentadorTransferencia.java</file>
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/EjercicioBanco/src/servicios/ServicioCliente.java</file>
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/EjercicioBanco/src/presentadores/PresentadorCliente.java</file>
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/EjercicioBanco/src/presentadores/PresentadorRegistro.java</file>
+        </group>
+    </open-files>
+</project-private>
