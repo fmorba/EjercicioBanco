@@ -7,6 +7,7 @@ package vistas;
 
 import java.util.List;
 import java.util.Vector;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import modelos.Registro;
@@ -279,34 +280,13 @@ public class VentanaInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_realizarTransferenciaButtonActionPerformed
 
     private void informeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_informeButtonActionPerformed
-        this.displayResult(this.presentadorRegistro.BuscarRegistrosPorCliente());
+        this.presentadorRegistro.displayResult();
     }//GEN-LAST:event_informeButtonActionPerformed
 
-    private void displayResult(List resultList) {
-        Vector<String> tableHeaders = new Vector<String>();
-        Vector tableData = new Vector();
-        tableHeaders.add("ID");
-        tableHeaders.add("Nombre");
-        tableHeaders.add("Apellido");
-        tableHeaders.add("Saldo Inicial");
-        tableHeaders.add("Transferencia");
-        tableHeaders.add("Cantidad");
-        tableHeaders.add("Saldo Final");
-
-        for (Object o : resultList) {
-            Registro registro = (Registro) o;
-            Vector<Object> oneRow = new Vector<Object>();
-            oneRow.add(registro.getCliente().getId());
-            oneRow.add(registro.getCliente().getNombre());
-            oneRow.add(registro.getCliente().getApellido());
-            oneRow.add(registro.getEstadoSaldoInicio());
-            oneRow.add(registro.getTipo());
-            oneRow.add(registro.getTransferencia().getCantidad());
-            oneRow.add(registro.getEstadoSaldoFinal());
-            tableData.add(oneRow);
-        }
-        informeTable.setModel(new DefaultTableModel(tableData, tableHeaders));
-    }
+    public JTable getInformeTable() {
+        return informeTable;
+    }   
+    
     
     
     

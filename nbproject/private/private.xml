@@ -12,9 +12,9 @@
             <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/EjercicioBanco/src/repositorios/RepositorioRegistros.java</file>
             <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/EjercicioBanco/src/servicios/ServicioTransferencia.java</file>
             <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/EjercicioBanco/src/presentadores/PresentadorTransferencia.java</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/EjercicioBanco/src/servicios/ServicioCliente.java</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/EjercicioBanco/src/presentadores/PresentadorCliente.java</file>
             <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/EjercicioBanco/src/presentadores/PresentadorRegistro.java</file>
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/EjercicioBanco/src/presentadores/PresentadorCliente.java</file>
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/EjercicioBanco/src/modelos/Cliente.hbm.xml</file>
         </group>
     </open-files>
 </project-private>

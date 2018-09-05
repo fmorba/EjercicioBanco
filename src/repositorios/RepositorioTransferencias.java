@@ -5,8 +5,15 @@
  */
 package repositorios;
 
+import banco.util.HibernateUtil;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import modelos.Transferencia;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
 
 /**
@@ -15,21 +22,60 @@ import modelos.Transferencia;
  */
 public class RepositorioTransferencias {
     private static ArrayList<Transferencia> listaTransferencia;
+    private static SessionFactory factory; 
     
     public RepositorioTransferencias(){
         this.listaTransferencia=new ArrayList<Transferencia>();
     }
     
     public void Guardar(Transferencia transferencia){
-        this.listaTransferencia.add(transferencia);
+        Session session = HibernateUtil.getSessionFactory().openSession();
+    Transaction tx = null;
+           
+      try {
+         tx = session.beginTransaction();
+         session.save(transferencia); 
+         tx.commit();
+      } catch (HibernateException e) {
+         if (tx!=null) tx.rollback();
+         e.printStackTrace(); 
+      } finally {
+         session.close(); 
+      }
     }
     
-    public Transferencia[] obtenerTodos()
+    public ArrayList<Transferencia> obtenerTodos()
     {
-        Transferencia[] arrayADevolver = new Transferencia[this.listaTransferencia.size()];
+      Session session = HibernateUtil.getSessionFactory().openSession();
+      Transaction tx = null;
+      ArrayList<Transferencia> arrayADevolver = new ArrayList<>();
+      
+      try {
+         tx = session.beginTransaction();
+         List transferenciasList = session.createQuery("FROM Transferencia").list();
+         for (Iterator iterator = transferenciasList.iterator(); iterator.hasNext();){
+            Transferencia transferencia = (Transferencia) iterator.next(); 
+            arrayADevolver.add(transferencia);
+         }
+         tx.commit();
+      } catch (HibernateException e) {
+         if (tx!=null) tx.rollback();
+         e.printStackTrace(); 
+      } finally {
+         session.close(); 
+      }     
         
-        return this.listaTransferencia.toArray(arrayADevolver);
+        return arrayADevolver;
     }
     
-    
+    public Transferencia BuscarPorId(int id) {
+        ArrayList<Transferencia> lista = obtenerTodos();
+
+        for (Transferencia transferencia : lista) {
+            if (transferencia.getIdTransferencia()== id) {
+                return transferencia;
+            }
+        }
+        return null;
+    }
 }

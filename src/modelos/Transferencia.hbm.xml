@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 05/09/2018 14:24:48 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelos.Transferencia" table="transferencia" catalog="banco" optimistic-lock="version">
+        <id name="idTransferencia" type="java.lang.Integer">
+            <column name="idTransferencia" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="clienteByOrigen" class="modelos.Cliente" fetch="select">
+            <column name="origen" not-null="true" />
+        </many-to-one>
+        <many-to-one name="clienteByDestino" class="modelos.Cliente" fetch="select">
+            <column name="destino" not-null="true" />
+        </many-to-one>
+        <property name="cantidad" type="float">
+            <column name="cantidad" precision="12" scale="0" not-null="true" />
+        </property>
+        <set name="registros" table="registro" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="transferencia" not-null="true" />
+            </key>
+            <one-to-many class="modelos.Registro" />
+        </set>
+    </class>
+</hibernate-mapping>

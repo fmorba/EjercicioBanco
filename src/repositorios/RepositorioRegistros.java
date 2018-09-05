@@ -5,40 +5,87 @@
  */
 package repositorios;
 
+import banco.util.HibernateUtil;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import modelos.Registro;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
 /**
  *
  * @author Usuario
  */
 public class RepositorioRegistros {
-     private static ArrayList<Registro> listaRegistros;
+     private static SessionFactory factory; 
     
     public RepositorioRegistros(){
-        this.listaRegistros=new ArrayList<Registro>();
     }
     
     public void Guardar(Registro registro){
-        this.listaRegistros.add(registro);
+        Session session = HibernateUtil.getSessionFactory().openSession();
+    Transaction tx = null;
+           
+      try {
+         tx = session.beginTransaction();
+         session.save(registro); 
+         tx.commit();
+      } catch (HibernateException e) {
+         if (tx!=null) tx.rollback();
+         e.printStackTrace(); 
+      } finally {
+         session.close(); 
+      }
     }
     
-    public Registro[] obtenerTodos()
+    public ArrayList<Registro> obtenerTodos()
     {
-        Registro[] arrayADevolver = new Registro[this.listaRegistros.size()];
+      Session session = HibernateUtil.getSessionFactory().openSession();
+      Transaction tx = null;
+      ArrayList<Registro> arrayADevolver = new ArrayList<>();
+      
+      try {
+         tx = session.beginTransaction();
+         List registrosList = session.createQuery("FROM Registro").list();
+         for (Iterator iterator = registrosList.iterator(); iterator.hasNext();){
+            Registro registro = (Registro) iterator.next(); 
+            arrayADevolver.add(registro);
+         }
+         tx.commit();
+      } catch (HibernateException e) {
+         if (tx!=null) tx.rollback();
+         e.printStackTrace(); 
+      } finally {
+         session.close(); 
+      }     
         
-        return this.listaRegistros.toArray(arrayADevolver);
+        return arrayADevolver;
     }
     
     public ArrayList<Registro> obtenerRegistrosPorCliente(int id)
     {
-        ArrayList<Registro> arrayADevolver = new ArrayList<Registro>();
+      Session session = HibernateUtil.getSessionFactory().openSession();
+      Transaction tx = null;
+      ArrayList<Registro> arrayADevolver = new ArrayList<>();
+      
+      try {
+         tx = session.beginTransaction();
+         List registrosList = session.createQuery("FROM Registro WHERE idRegistro="+id).list();
+         for (Iterator iterator = registrosList.iterator(); iterator.hasNext();){
+            Registro registro = (Registro) iterator.next(); 
+            arrayADevolver.add(registro);
+         }
+         tx.commit();
+      } catch (HibernateException e) {
+         if (tx!=null) tx.rollback();
+         e.printStackTrace(); 
+      } finally {
+         session.close(); 
+      }     
         
-        for (Registro registro : listaRegistros) {
-            if (registro.getCliente().getId()==id) {
-                arrayADevolver.add(registro);
-            }
-        }
         return arrayADevolver;
     }
 }

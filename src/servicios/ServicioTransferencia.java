@@ -18,7 +18,7 @@ import repositorios.RepositorioTransferencias;
  * @author Usuario
  */
 public class ServicioTransferencia {
-    int monto;
+    float monto;
     int idOrigen;
     int idDestino;
     Cliente clienteOrigen;
@@ -40,7 +40,7 @@ public class ServicioTransferencia {
         this.repositorioCliente.ActualizarSaldoCliente(monto, idOrigen, false);
         this.repositorioCliente.ActualizarSaldoCliente(monto, idDestino, true);
         
-        Transferencia transferencia = new Transferencia(monto,clienteOrigen,clienteDestino);
+        Transferencia transferencia = new Transferencia(clienteOrigen,clienteDestino,monto);
         this.repositorioTransferencias.Guardar(transferencia);
         registro = new Registro(clienteOrigen, transferencia, "Envio");
         this.repositorioRegistros.Guardar(registro);
@@ -53,7 +53,7 @@ public class ServicioTransferencia {
             if (montoEfectivo==null || origen==null || destino==null) {
                 throw new NullPointerException ("Campo vacio.");
             }else{
-                this.monto = Integer.valueOf(montoEfectivo);
+                this.monto = Float.valueOf(montoEfectivo);
                 this.idOrigen = Integer.valueOf(origen);
                 this.idDestino = Integer.valueOf(destino);
                 
